@@ -15,8 +15,8 @@ const Layout = ({ meta, children }: LayoutProps) => {
         <meta charSet="utf-8" />
         <title>{meta?.title ?? "Udrive.vn"}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content={meta?.description ?? "Any thing funny by car"} />
-        <meta name="keywords" content={meta?.keywords ?? "Car, troll car"} />
+        <meta name="description" content={meta?.description ?? "Any thing by car"} />
+        <meta name="keywords" content={meta?.keywords ?? "Car, vehicle"} />
         <meta name="author" content="udrive.vn" />
         <meta name="email" content="info@pandion.vn" />
         <meta name="website" content="https://udrive.vn" />

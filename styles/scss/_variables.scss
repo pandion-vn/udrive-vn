@@ -2,9 +2,8 @@
 // variables.scss
 //
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Livvic:wght@400;500;600;700&display=swap');
 
 // Color
 $white:                     #ffffff;
@@ -61,11 +60,11 @@ $footer:                    lighten($black, 5%);
 // Base font
 $font-size-base:            15px;
 
-$font-family-base:          'Poppins', sans-serif;
-$font-family-secondary:     'Poppins', sans-serif;
-$font-noto:                 'Noto Sans', sans-serif;
-$font-libre:                'Libre Baskerville', serif;
-$font-kaushan:              'Kaushan Script', cursive;
+$font-family-base:          'Nunito', sans-serif;
+$font-family-secondary:     'Nunito', sans-serif;
+$font-noto:                 'Nunito', sans-serif;
+$font-libre:                'Nunito', serif;
+$font-kaushan:              'Nunito', cursive;
 
 
 $colors: (

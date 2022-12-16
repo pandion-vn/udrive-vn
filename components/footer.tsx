@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="footer bg-footer">
-      <div className="container">
+      {/* <div className="container">
         <div className="row">
           <div className="col-12">
             <div className="footer-py-60">
@@ -148,7 +148,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="footer-py-30 footer-bar bg-footer">
         <div className="container">
@@ -158,13 +158,11 @@ const Footer = () => {
                 <p className="mb-0 text-muted">
                   © Udrive. Design with{' '}
                   <i className="mdi mdi-heart text-danger"></i> by{' '}
-                  <a
-                    href="https://shreethemes.in/"
-                    target="_blank"
+                  <span
                     className="text-reset"
                   >
                     Pandion.vn
-                  </a>
+                  </span>
                   .
                 </p>
               </div>

@@ -1,8 +1,25 @@
+import { getAllPosts, getPostBySlug } from '@/common/ghost';
+import { PostsOrPages } from '@tryghost/content-api';
+import { WithChildren } from '@/types/shared';
+import { Post } from '@/types/post';
 import Layout from '@/components/layout';
+import SideBar from '@/components/widgets/sidebar';
+import { Meta } from '@/types/seo';
+import { formatDate, formatHtmlContent } from '@/common/utils';
 
-const BlogDetail = () => {
+interface BlogDetailProps extends WithChildren {
+  post: Post;
+}
+
+const BlogDetail = ({ post }: BlogDetailProps) => {
+  const meta = {
+    title: post.title ?? 'Any thing by car',
+    description: post.excerpt ?? 'Car, vehicle',
+    keywords: post.primary_tag,
+  } as Meta;
+
   return (
-    <Layout>
+    <Layout meta={meta}>
       <section className="bg-half-170">
         <div className="container">
           <div className="row">
@@ -13,23 +30,23 @@ const BlogDetail = () => {
                     <i className="uil uil-user h5 mb-0"></i>
                     <a href="#" className="text-primary h6">
                       {' '}
-                      Mr. Donald Ruffy
+                      The Udriver
                     </a>
                   </li>
                   <li className="list-inline-item text-muted h6 me-3">
-                    <i className="uil uil-calender h5 text-dark"></i> 15th April
-                    2021
+                    <i className="uil uil-calender h5 text-dark"></i>{' '}
+                    {formatDate(post.published_at)}
                   </li>
-                  <li className="list-inline-item text-muted h6">
+                  {/* <li className="list-inline-item text-muted h6">
                     <i className="uil uil-clock h5 text-dark"></i> 8 min read
-                  </li>
+                  </li> */}
                 </ul>
 
                 <h5 className="heading fw-semibold page-heading">
-                  Capsule Wardrobe Essentials The Leopard Print Coat
+                  {post.title}
                 </h5>
 
-                <nav aria-label="breadcrumb" className="d-inline-block mt-4">
+                {/* <nav aria-label="breadcrumb" className="d-inline-block mt-4">
                   <ul className="breadcrumb p-0 mb-0">
                     <li className="breadcrumb-item">
                       <a href="index.html">Starty</a>
@@ -41,201 +58,17 @@ const BlogDetail = () => {
                       Single Post
                     </li>
                   </ul>
-                </nav>
+                </nav> */}
               </div>
 
-              <div id="grid" className="row mt-4">
-                <div
-                  className="col-lg-4 col-md-4 col-12 spacing picture-item"
-                  data-groups='["branding"]'
-                >
-                  <div className="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div className="card-img position-relative">
-                      <img
-                        src="/images/portfolio/01.jpg"
-                        className="img-fluid"
-                        alt=""
-                      />
-                      <div className="card-overlay"></div>
+              <div
+                className="mt-4"
+                dangerouslySetInnerHTML={{
+                  __html: formatHtmlContent(post.html),
+                }}
+              />
 
-                      <div className="pop-icon">
-                        <a
-                          href="/images/portfolio/01.jpg"
-                          className="btn btn-pills btn-icon lightbox"
-                        >
-                          <i className="uil uil-search"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="col-lg-4 col-md-4 col-12 spacing picture-item"
-                  data-groups='["designing"]'
-                >
-                  <div className="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div className="card-img position-relative">
-                      <img
-                        src="/images/portfolio/02.jpg"
-                        className="img-fluid"
-                        alt=""
-                      />
-                      <div className="card-overlay"></div>
-
-                      <div className="pop-icon">
-                        <a
-                          href="/images/portfolio/02.jpg"
-                          className="btn btn-pills btn-icon lightbox"
-                        >
-                          <i className="uil uil-search"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="col-lg-4 col-md-4 col-12 spacing picture-item"
-                  data-groups='["photography"]'
-                >
-                  <div className="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div className="card-img position-relative">
-                      <img
-                        src="/images/portfolio/03.jpg"
-                        className="img-fluid"
-                        alt=""
-                      />
-                      <div className="card-overlay"></div>
-
-                      <div className="pop-icon">
-                        <a
-                          href="/images/portfolio/03.jpg"
-                          className="btn btn-pills btn-icon lightbox"
-                        >
-                          <i className="uil uil-search"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="col-lg-4 col-md-4 col-12 spacing picture-item"
-                  data-groups='["development"]'
-                >
-                  <div className="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div className="card-img position-relative">
-                      <img
-                        src="/images/portfolio/04.jpg"
-                        className="img-fluid"
-                        alt=""
-                      />
-                      <div className="card-overlay"></div>
-
-                      <div className="pop-icon">
-                        <a
-                          href="/images/portfolio/04.jpg"
-                          className="btn btn-pills btn-icon lightbox"
-                        >
-                          <i className="uil uil-search"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="col-lg-4 col-md-4 col-12 spacing picture-item"
-                  data-groups='["branding"]'
-                >
-                  <div className="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div className="card-img position-relative">
-                      <img
-                        src="/images/portfolio/05.jpg"
-                        className="img-fluid"
-                        alt=""
-                      />
-                      <div className="card-overlay"></div>
-
-                      <div className="pop-icon">
-                        <a
-                          href="/images/portfolio/05.jpg"
-                          className="btn btn-pills btn-icon lightbox"
-                        >
-                          <i className="uil uil-search"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="col-lg-4 col-md-4 col-12 spacing picture-item"
-                  data-groups='["designing"]'
-                >
-                  <div className="card portfolio portfolio-classic portfolio-primary rounded overflow-hidden">
-                    <div className="card-img position-relative">
-                      <img
-                        src="/images/portfolio/06.jpg"
-                        className="img-fluid"
-                        alt=""
-                      />
-                      <div className="card-overlay"></div>
-
-                      <div className="pop-icon">
-                        <a
-                          href="/images/portfolio/06.jpg"
-                          className="btn btn-pills btn-icon lightbox"
-                        >
-                          <i className="uil uil-search"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <p className="text-muted">
-                  <span className="dropcaps display-4 text-dark me-2">T</span>he
-                  most well-known dummy text is the 'Lorem Ipsum', which is said
-                  to have originated in the 16th century. Lorem Ipsum is
-                  composed in a pseudo-Latin language which more or less
-                  corresponds to 'proper' Latin. It contains a series of real
-                  Latin words. This ancient dummy text is also incomprehensible,
-                  but it imitates the rhythm of most European languages in Latin
-                  script. The advantage of its Latin origin and the relative
-                  meaninglessness of Lorum Ipsum is that the text does not
-                  attract attention to itself or distract the viewer's attention
-                  from the layout.
-                </p>
-                <p className="text-muted mb-0">
-                  Thus, Lorem Ipsum has only limited suitability as a visual
-                  filler for German texts. If the fill text is intended to
-                  illustrate the characteristics of different typefaces, it
-                  sometimes makes sense to select texts containing the various
-                  letters and symbols specific to the output language.
-                </p>
-
-                <blockquote className="text-center mx-auto blockquote">
-                  <i className="mdi mdi-format-quote-open mdi-48px text-muted opacity-2 d-block"></i>{' '}
-                  The man who comes back through the door in the wall will never
-                  be quite the same as the man who went out.{' '}
-                  <small className="d-block text-muted mt-2">
-                    - Starty Template
-                  </small>
-                </blockquote>
-
-                <p className="text-muted">
-                  There is now an abundance of readable dummy texts. These are
-                  usually used when a text is required purely to fill a space.
-                  These alternatives to the classic Lorem Ipsum texts are often
-                  amusing and tell short, funny or nonsensical stories.
-                </p>
-              </div>
-
-              <div className="card shadow rounded border-0 mt-5">
+              {/* <div className="card shadow rounded border-0 mt-5">
                 <div className="card-body">
                   <h5 className="card-title mb-0">Comments :</h5>
 
@@ -252,10 +85,7 @@ const BlogDetail = () => {
                           </a>
                           <div className="commentor-detail">
                             <h6 className="mb-0">
-                              <a
-                                href="#"
-                                className="text-dark media-heading"
-                              >
+                              <a href="#" className="text-dark media-heading">
                                 Lorenzo Peterson
                               </a>
                             </h6>
@@ -289,10 +119,7 @@ const BlogDetail = () => {
                           </a>
                           <div className="commentor-detail">
                             <h6 className="mb-0">
-                              <a
-                                href="#"
-                                className="media-heading text-dark"
-                              >
+                              <a href="#" className="media-heading text-dark">
                                 Tammy Camacho
                               </a>
                             </h6>
@@ -326,10 +153,7 @@ const BlogDetail = () => {
                           </a>
                           <div className="commentor-detail">
                             <h6 className="mb-0">
-                              <a
-                                href="#"
-                                className="media-heading text-dark"
-                              >
+                              <a href="#" className="media-heading text-dark">
                                 Tammy Camacho
                               </a>
                             </h6>
@@ -391,9 +215,9 @@ const BlogDetail = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="card shadow rounded border-0 mt-5">
+              {/* <div className="card shadow rounded border-0 mt-5">
                 <div className="card-body">
                   <h5 className="card-title mb-0">Leave A Comment :</h5>
 
@@ -452,194 +276,14 @@ const BlogDetail = () => {
                     </div>
                   </form>
                 </div>
-              </div>
+              </div> */}
             </div>
 
-            <div className="col-lg-4 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-              <div className="sidebar sticky-bar ms-lg-4">
-                <div className="widget text-center">
-                  <div className="rounded p-4 shadow bg-white">
-                    <img
-                      src="/images/client/03.jpg"
-                      className="avatar avatar-medium rounded-circle shadow-lg"
-                      alt=""
-                    />
-
-                    <div className="mt-4">
-                      <a href="blog-author.html" className="text-dark title h5">
-                        Christina Gonzalez
-                      </a>
-                      <p className="text-muted">Blogger</p>
-
-                      <ul className="list-unstyled align-items-center social-icon social mb-0">
-                        <li className="list-inline-item">
-                          <a href="#" className="rounded">
-                            <i className="uil uil-facebook-f"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="#" className="rounded mt-1">
-                            <i className="uil uil-instagram"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="#" className="rounded mt-1">
-                            <i className="uil uil-twitter"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="#" className="rounded mt-1">
-                            <i className="uil uil-linkedin"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="#" className="rounded mt-1">
-                            <i className="uil uil-dribbble"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="widget mt-4 pt-2">
-                  <div className="rounded p-4 shadow bg-white">
-                    <h6 className="widget-title font-weight-bold pt-2 pb-2 shadow bg-light rounded text-center">
-                      Recent Post
-                    </h6>
-                    <div className="mt-4">
-                      <div className="d-flex align-items-center">
-                        <img
-                          src="/images/blog/01.jpg"
-                          className="avatar avatar-small rounded"
-                          style={{ width: 'auto' }}
-                          alt=""
-                        />
-                        <div className="flex-1 ms-3">
-                          <a
-                            href="#"
-                            className="d-block title text-dark"
-                          >
-                            Consultant Business
-                          </a>
-                          <span className="text-muted">15th April 2021</span>
-                        </div>
-                      </div>
-
-                      <div className="d-flex align-items-center mt-3">
-                        <img
-                          src="/images/blog/02.jpg"
-                          className="avatar avatar-small rounded"
-                          style={{ width: 'auto' }}
-                          alt=""
-                        />
-                        <div className="flex-1 ms-3">
-                          <a
-                            href="#"
-                            className="d-block title text-dark"
-                          >
-                            Grow Your Business
-                          </a>
-                          <span className="text-muted">15th April 2021</span>
-                        </div>
-                      </div>
-
-                      <div className="d-flex align-items-center mt-3">
-                        <img
-                          src="/images/blog/03.jpg"
-                          className="avatar avatar-small rounded"
-                          style={{ width: 'auto' }}
-                          alt=""
-                        />
-                        <div className="flex-1 ms-3">
-                          <a
-                            href="#"
-                            className="d-block title text-dark"
-                          >
-                            Look On The Glorious Balance
-                          </a>
-                          <span className="text-muted">15th April 2021</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="widget mt-4 pt-2 text-center">
-                  <div className="rounded p-4 shadow bg-white">
-                    <h6 className="widget-title font-weight-bold pt-2 pb-2 shadow bg-light rounded">
-                      Tags Cloud
-                    </h6>
-                    <div className="tagcloud mt-4">
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Business
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Finance
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Marketing
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Fashion
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Bride
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Lifestyle
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Travel
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Beauty
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Video
-                      </a>
-                      <a
-                        href="#"
-                        className="rounded text-dark"
-                      >
-                        Audio
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <SideBar />
           </div>
         </div>
 
-        <div className="container mt-100 mt-60">
+        {/* <div className="container mt-100 mt-60">
           <div className="row justify-content-center">
             <div className="col-12">
               <div className="section-title text-center mb-4 pb-2">
@@ -885,10 +529,24 @@ const BlogDetail = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
     </Layout>
   );
 };
 
 export default BlogDetail;
+
+export async function getStaticPaths() {
+  const posts = (await getAllPosts({})) as PostsOrPages;
+  const paths = posts.map(({ slug }) => ({ params: { slug } }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }: any) {
+  const { slug } = params;
+  const post = await getPostBySlug(slug);
+
+  return { props: { post } };
+}

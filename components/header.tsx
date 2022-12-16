@@ -42,13 +42,13 @@ const Header = () => {
           <ul className="navigation-menu nav-right nav-light">
             <li>
               <a href="#" className="sub-menu-item">
-                Home
+                Trang chủ
               </a>
             </li>
 
             <li>
               <a href="#" className="sub-menu-item">
-                Contact us
+                Về chúng tôi
               </a>
             </li>
           </ul>
