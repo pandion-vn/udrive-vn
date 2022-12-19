@@ -1,14 +1,16 @@
+import Link from "next/link";
+
 const Header = () => {
   return (
     <header id="topnav" className="defaultscroll sticky nav-sticky">
       <div className="container">
-        <a className="logo" href="index.html">
+        <Link className="logo" href="/">
           <span className="logo-light-mode">
             <img src="/images/udrive-logo.svg" height={30} className="l-dark" alt="" />
             <img src="/images/udrive-logo.svg" height={30} className="l-light" alt="" />
           </span>
           <img src="/images/udrive-logo.svg" height={30} className="logo-dark-mode" alt="" />
-        </a>
+        </Link>
         <div className="menu-extras">
           <div className="menu-item">
             <a className="navbar-toggle" onClick={undefined}>

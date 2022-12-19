@@ -13,7 +13,7 @@ const HomeHero = () => {
                 Tin tức & Bài viết
               </h5>
               <p className="text-white-50 para-desc mx-auto mb-0">
-                Về  PhươngTtiện và những thông tin xung quanh Ngành Công Nghiệp Ô Tô.
+                Về  Phương Tiện và những thông tin xung quanh Ngành Công Nghiệp Ô Tô.
               </p>
             </div>
           </div>
